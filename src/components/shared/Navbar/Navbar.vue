@@ -4,7 +4,9 @@
             <button class="btn btn-sidebar-toggler">
                 <span class="icon"></span>
             </button>
-            <img src="../../../assets/images/brand.png" alt="" class="navbar-brand">
+            <router-link :to="{ name: 'home' }">
+                <img src="../../../assets/images/brand.png" alt="" class="navbar-brand">
+            </router-link>
         </div>
     </nav>
 </template>
@@ -22,6 +24,8 @@
         box-shadow: 0 4px 6px 0 rgba(#000, .2);
         display: flex;
         padding: 1rem 2.5rem;
+        position: fixed;
+        width: 100%;
         .btn {
             margin-right: .5rem;
             .icon {
@@ -51,5 +55,3 @@
         }
     }
 </style>
-
-

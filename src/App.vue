@@ -1,16 +1,18 @@
 <template>
     <div id="app">
-        <app-home></app-home>
+        <app-sidebar></app-sidebar>
+        <router-view name="navbar"></router-view>
+        <router-view name="default"></router-view>
     </div>
 </template>
 
 <script>
-    import Home from './components/Home/Home.vue';
+    import Sidebar from './components/shared/Sidebar/Sidebar.vue';
 
     export default {
         name: 'app',
         components: {
-            'app-home': Home,
+            'app-sidebar': Sidebar,
         },
         data() {
             return {};

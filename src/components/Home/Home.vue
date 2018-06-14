@@ -1,11 +1,11 @@
 <template>
-    <section id="home">
-        <app-navbar></app-navbar>
+    <section class="root-section" id="home">
         <div class="pokemons-grid">
             <div
                 class="pokemon-card"
                 v-for="poke of pokemons"
                 :key="poke.id"
+                @click="go(poke.id)"
             >
                 <img :src="poke.thumb" :alt="poke.name" class="pokemon-thumb">
                 <p class="pokemon-name">{{ poke.name }}</p>
@@ -15,33 +15,31 @@
 </template>
 
 <script>
-    import Navbar from '../shared/Navbar/Navbar.vue';
+    // --> Service
+    import PokemonService from '../../service/pokemon.service.js';
 
     export default {
         name: 'Home',
-        components: {
-            'app-navbar': Navbar,
-        },
         data() {
             return {
-                pokemons: [
-                    {
-                        "id":1,
-                        "name":"bulbasaur",
-                        "thumb":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-                    },
-                    {
-                            "id":2,
-                            "name":"ivysaur",
-                            "thumb":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
-                    },
-                    {
-                        "id":3,
-                        "name":"venusaur",
-                        "thumb":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
-                    }
-                ],
+                pokemons: [],
             };
+        },
+        methods: {
+            go(id) {
+                this.$router.push({ name: 'pokemon', params: { id }});
+            }
+        },
+        mounted() {
+
+            const service = new PokemonService(this.$store);
+            service.list()
+                .then(response => {
+                    this.pokemons = response.content;
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
         }
     }
 </script>
@@ -78,4 +76,3 @@
         }
     }
 </style>
-
