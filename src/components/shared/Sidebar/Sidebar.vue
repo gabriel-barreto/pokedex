@@ -1,9 +1,9 @@
 <template>
     <nav>
-        <div class="sidebar">
+        <div id="sidebar" class="sidebar">
             <header class="sidebar-header">
                 <h1 class="app-title">Pokedex</h1>
-                <button class="sidebar-close-btn btn">x</button>
+                <button class="sidebar-close-btn btn" @click="hideSidebar">x</button>
             </header>
             <main class="sidebar-content">
                 <h3 class="sectiont-title">Filters List</h3>
@@ -15,44 +15,59 @@
 </template>
 
 <script>
-    import Type from '../Type/Type.vue';
+import Type from '../Type/Type.vue';
+import Sidebar from './index.js';
 
-    export default {
-        name: 'Sidebar',
-        components: {
-            'app-type': Type,
-        }
-    }
+export default {
+    name: 'Sidebar',
+    components: {
+        'app-type': Type,
+    },
+    methods: {
+        hideSidebar () {
+            Sidebar.hide();
+        },
+    },
+}
 </script>
 
 <style lang="scss">
-    .sidebar {
-        background-color: #fff;
-        font-family: Helvetica, Arial, sans-serif;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        width: 80vw;
-        z-index: 999;
-        .sidebar-header {
-            background-color: #e74c3c;
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 2.5rem;
-            .app-title {
-                color: #fff;
-                font-size: 2.8rem;
-                text-shadow: 0 1px 2px rgba(#000, .2);
-            }
-            .btn {
-                color: #fff;
-                font-size: 1.8rem;
-                outline-color: transparent;
-                transition: color .35s;
-                &:hover, &:focus {
-                    color: rgba(#fff, .6);
-                }
+.sidebar {
+    background-color: #fff;
+    box-shadow: 2px 1px 8px 1px rgba(#000, 0.2);
+    font-family: Helvetica, Arial, sans-serif;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 80vw;
+    transform: translateX(-1000px);
+    transition: transform 0.5s;
+    z-index: 999;
+    &.--is-open {
+        transform: translateX(0);
+    }
+    .sidebar-header {
+        background-color: #e74c3c;
+        box-shadow: 0 1px 2px 0 rgba(#000, 0.2);
+        border-bottom: 2px solid rgba(#000, 0.05);
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 2.5rem;
+        .app-title {
+            color: #fff;
+            font-size: 2.4rem;
+            text-shadow: 0 1px 2px rgba(#000, 0.2);
+        }
+        .btn {
+            color: #fff;
+            font-size: 1.8rem;
+            outline-color: transparent;
+            transition: color 0.35s;
+            &:hover,
+            &:focus {
+                color: rgba(#fff, 0.6);
             }
         }
     }
+}
 </style>
