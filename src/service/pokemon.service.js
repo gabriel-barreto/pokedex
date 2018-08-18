@@ -1,33 +1,26 @@
-import config from '../configs/api.config';
+import config from "../configs/api.config";
 
 class PokemonService {
-    constructor (store) {
+    constructor(store) {
         this.$store = store;
-        this.url = `${config.url}/pokemon`;
+        this.url = `${config.url}/pokemons`;
+    }
+
+    _handle(req) {
+        req.then(raw => raw.json())
+            .then(response => response.content)
+            .catch(err => {
+                throw err;
+            });
     }
 
     list() {
-        return fetch(this.url)
-            .then(raw => raw.json())
-            .then(response => {
-                this.$store.commit('registerPokemon', response);
-                return response;
-            })
-            .catch(err => {
-                throw err;
-            });
+        return this._handle(fetch(this.url));
     }
 
-    getById(id) {
-        return fetch(`${this.url}/${id}`)
-            .then(raw => raw.json())
-            .then(response => {
-                return response;
-            })
-            .catch(err => {
-                throw err;
-            });
+    get(id) {
+        return this._handle(fetch(`${this.url}/${id}`));
     }
-};
+}
 
 export default PokemonService;
