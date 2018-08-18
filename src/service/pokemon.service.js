@@ -7,7 +7,8 @@ class PokemonService {
     }
 
     _handle(req) {
-        req.then(raw => raw.json())
+        return req
+            .then(raw => raw.json())
             .then(response => response.content)
             .catch(err => {
                 throw err;
