@@ -21,7 +21,7 @@ const store = new Vuex.Store({
     },
 
     actions: {
-        getList({ commit }) {
+        fetchPokes({ commit }) {
             const pokeServices = new service();
             pokeServices
                 .list()
