@@ -14,6 +14,21 @@ const store = new Vuex.Store({
         pokemons: []
     },
 
+    getters: {
+        types(state) {
+            if (state.pokemons.length > 0) {
+                const pokeTypes = new Set([]);
+                state.pokemons.map(poke => {
+                    poke.types.map(type => {
+                        pokeTypes.add(type);
+                    });
+                });
+                return [...pokeTypes];
+            }
+            return [];
+        }
+    },
+
     mutations: {
         add(state, payload) {
             state.pokemons = payload;
