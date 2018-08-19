@@ -15,8 +15,14 @@ export default {
         },
     },
     methods: {
-        applyFilter (type) {
-            console.log(type);
+        applyFilter (value) {
+            this.$store.commit('filter', { field: "types", value });
+            if (this.$route.name != 'home') {
+                this.$router.push({ name: 'home' });
+            }
+            if (this.$store.getters['sidebar/status']) {
+                this.$store.commit('sidebar/close');
+            }
         },
     },
 };
@@ -27,6 +33,7 @@ export default {
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(#000, 0.2);
     color: #fff;
+    cursor: pointer;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
