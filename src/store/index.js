@@ -18,6 +18,7 @@ const store = new Vuex.Store({
     },
 
     getters: {
+        pokemons: state => state.pokemons,
         types(state) {
             if (state.pokemons.length > 0) {
                 const pokeTypes = new Set([]);
