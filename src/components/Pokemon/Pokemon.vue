@@ -61,12 +61,14 @@ export default {
                     route: { name: 'pokemon', params: this.$route.params },
                     label: `#${poke.id} - ${poke.name}`,
                 });
-            })
-            .catch(err => console.log(err));
+            });
     },
-    beforeDestroy () {
-        this.$store.commit('breadcrumb/remove');
+    mounted () {
+        this.$store.commit("filter", { field: "types", value: "" });
     },
+    destroyed () {
+        this.$store.commit("breadcrumb/remove");
+    }
 }
 </script>
 
