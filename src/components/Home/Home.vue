@@ -1,5 +1,6 @@
 <template>
     <section class="root-section" id="home">
+        <app-breadcrumb />
         <div class="pokemons-grid">
             <div class="pokemon-card" v-for="poke of pokemons" :key="poke.id" @click="go(poke.id)">
                 <img :src="poke.thumb" :alt="poke.name" class="pokemon-thumb">
@@ -10,11 +11,14 @@
 </template>
 
 <script>
-// --> Service
-import PokemonService from '../../service/pokemon.service.js';
+// ==> Components
+import Breadcrumb from '../shared/Breadcrumb/Breadcrumb.vue';
 
 export default {
     name: 'Home',
+    components: {
+        'app-breadcrumb': Breadcrumb,
+    },
     computed: {
         pokemons () {
             return this.$store.getters['pokemons'];
@@ -37,7 +41,7 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 1rem;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 0 0 2rem 0;
     width: 87.5%;
     @media (min-width: 768px) {
         grid-template-columns: repeat(4, 1fr);

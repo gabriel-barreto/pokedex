@@ -55,8 +55,17 @@ export default {
     beforeMount () {
         const service = new PokemonService;
         service.get(this.$route.params.id)
-            .then(poke => this.pokemon = poke)
+            .then(poke => {
+                this.pokemon = poke;
+                this.$store.commit('breadcrumb/add', {
+                    route: { name: 'pokemon', params: this.$route.params },
+                    label: `#${poke.id} - ${poke.name}`,
+                });
+            })
             .catch(err => console.log(err));
+    },
+    beforeDestroy () {
+        this.$store.commit('breadcrumb/remove');
     },
 }
 </script>
