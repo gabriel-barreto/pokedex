@@ -12,14 +12,11 @@
 </template>
 
 <script>
-// ==> Components services
-import Sidebar from '../Sidebar';
-
 export default {
     name: 'Navbar',
     methods: {
         openSidebar () {
-            Sidebar.show();
+            this.$store.commit('sidebar/open');
         },
     },
 }

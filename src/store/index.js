@@ -8,6 +8,9 @@ import service from "../service/pokemon.service";
 // ==> Injecting Vue plugins
 Vue.use(Vuex);
 
+// ==> Importing modules
+import sidebar from "./Sidebar";
+
 // ==> Create new store
 const store = new Vuex.Store({
     state: {
@@ -47,6 +50,10 @@ const store = new Vuex.Store({
                     console.log(err);
                 });
         }
+    },
+
+    modules: {
+        sidebar
     }
 });
 

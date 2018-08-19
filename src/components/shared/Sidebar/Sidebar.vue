@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <div id="sidebar" class="sidebar">
+        <div class="sidebar" :class="{ '--is-open': status }">
             <header class="sidebar-header">
                 <h1 class="app-title">Pokedex</h1>
                 <button class="sidebar-close-btn btn" @click="hideSidebar">x</button>
@@ -16,16 +16,19 @@
 
 <script>
 import Type from '../Type/Type.vue';
-import Sidebar from './index.js';
-
 export default {
     name: 'Sidebar',
     components: {
         'app-type': Type,
     },
+    computed: {
+        status () {
+            return this.$store.getters['sidebar/status'];
+        },
+    },
     methods: {
         hideSidebar () {
-            Sidebar.hide();
+            this.$store.commit('sidebar/close');
         },
     },
 }
@@ -41,7 +44,7 @@ export default {
     top: 0;
     width: 80vw;
     transform: translateX(-1000px);
-    transition: transform 0.5s;
+    transition: transform 0.4s;
     z-index: 999;
     &.--is-open {
         transform: translateX(0);
