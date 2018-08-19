@@ -37,6 +37,11 @@ export default {
             this.$store.commit('sidebar/close');
         },
     },
+    mounted () {
+        if (this.$store.getters['types'].length < 1) {
+            this.$store.dispatch('fetchPokes');
+        }
+    }
 }
 </script>
 
