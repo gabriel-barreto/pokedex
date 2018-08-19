@@ -42,7 +42,8 @@ const store = new Vuex.Store({
                 return [...pokeTypes];
             }
             return [];
-        }
+        },
+        filter: state => state.filter
     },
 
     mutations: {
