@@ -15,10 +15,10 @@ import PokemonService from '../../service/pokemon.service.js';
 
 export default {
     name: 'Home',
-    data () {
-        return {
-            pokemons: [],
-        };
+    computed: {
+        pokemons () {
+            return this.$store.getters['pokemons'];
+        },
     },
     methods: {
         go (id) {
@@ -39,7 +39,23 @@ export default {
     margin: 0 auto;
     padding: 2rem 0;
     width: 87.5%;
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    @media (min-width: 1400px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
     .pokemon-card {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         border-radius: 4px;
         box-shadow: 0 0 0 0 rgba(#000, 0.2);
         cursor: pointer;
@@ -49,6 +65,7 @@ export default {
         .pokemon-thumb {
             height: auto;
             max-width: 100%;
+            object-fit: contain;
             width: auto;
         }
         .pokemon-name {
