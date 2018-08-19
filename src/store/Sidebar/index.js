@@ -8,6 +8,6 @@ export default {
         status: state => state.isOpen
     },
     state: {
-        isOpen: true
+        isOpen: false
     }
 };
