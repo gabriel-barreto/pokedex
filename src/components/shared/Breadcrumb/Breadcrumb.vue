@@ -35,6 +35,7 @@ export default {
         .breadcrumb-item {
             .breadcrumb-link {
                 color: rgba(#000, 0.45);
+                font-family: Helvetica, Arial, sans-serif;
                 font-size: 1.6rem;
                 position: relative;
                 text-transform: uppercase;
