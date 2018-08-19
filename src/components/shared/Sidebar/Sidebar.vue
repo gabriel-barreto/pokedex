@@ -60,6 +60,15 @@ export default {
     &.--is-open {
         transform: translateX(0);
     }
+    @media (min-width: 768px) {
+        width: 30vw;
+    }
+    @media (min-width: 1200px) {
+        width: 25vw;
+    }
+    @media (min-width: 1400px) {
+        width: 20vw;
+    }
     .sidebar-header {
         background-color: #e74c3c;
         box-shadow: 0 1px 2px 0 rgba(#000, 0.2);
