@@ -1,5 +1,6 @@
 <template>
     <section class="root-section" id="pokemon">
+        <app-breadcrumb />
         <div class="pokemon-thumb">
             <img :src="pokemon.thumb" :alt="pokemon.name" class="thumb" />
         </div>
@@ -37,11 +38,13 @@
 import PokemonService from '../../service/pokemon.service';
 
 // ===> Components
+import Breadcrumb from '../shared/Breadcrumb/Breadcrumb.vue';
 import Type from '../shared/Type/Type.vue';
 
 export default {
     name: 'Pokemon',
     components: {
+        'app-breadcrumb': Breadcrumb,
         'app-type': Type,
     },
     data () {
@@ -73,9 +76,11 @@ $fontFamily: Helvetica, Arial, sans-serif;
     }
     .pokemon-name {
         font-family: $fontFamily;
-        font-size: 2rem;
+        font-size: 2.4rem;
+        font-weight: bold;
         text-align: center;
         text-transform: uppercase;
+        text-shadow: 0 1px 2px rgba(#000, 0.2);
         margin-bottom: 2.5rem;
     }
     .pokemon-feature-container {
