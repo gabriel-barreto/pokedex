@@ -43,7 +43,7 @@ export default {
     position: fixed;
     top: 0;
     width: 80vw;
-    transform: translateX(-1000px);
+    transform: translateX(-10000px);
     transition: transform 0.4s;
     z-index: 999;
     &.--is-open {
