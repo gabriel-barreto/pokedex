@@ -41,7 +41,7 @@ export default {
             &::before {
                 background-color: #fff;
                 display: block;
-                height: 0.3rem;
+                height: 0.275rem;
                 width: 2.25rem;
             }
             &::before,
