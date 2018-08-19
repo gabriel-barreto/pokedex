@@ -9,6 +9,7 @@ import service from "../service/pokemon.service";
 Vue.use(Vuex);
 
 // ==> Importing modules
+import breadcrumb from "./Breadcrumb";
 import sidebar from "./Sidebar";
 
 // ==> Create new store
@@ -68,6 +69,7 @@ const store = new Vuex.Store({
     },
 
     modules: {
+        breadcrumb,
         sidebar
     }
 });
