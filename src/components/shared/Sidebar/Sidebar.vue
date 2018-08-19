@@ -6,8 +6,11 @@
                 <button class="sidebar-close-btn btn" @click="hideSidebar">x</button>
             </header>
             <main class="sidebar-content">
-                <h3 class="sectiont-title">Filters List</h3>
+                <h3 class="section-title">Filters List</h3>
                 <ul class="filters-list">
+                    <li class="filter-item" v-for="type in types" :key="type">
+                        <app-type :label="type" />
+                    </li>
                 </ul>
             </main>
         </div>
@@ -24,6 +27,9 @@ export default {
     computed: {
         status () {
             return this.$store.getters['sidebar/status'];
+        },
+        types () {
+            return this.$store.getters['types'];
         },
     },
     methods: {
@@ -59,6 +65,7 @@ export default {
         .app-title {
             color: #fff;
             font-size: 2.4rem;
+            font-weight: bold;
             text-shadow: 0 1px 2px rgba(#000, 0.2);
         }
         .btn {
@@ -69,6 +76,28 @@ export default {
             &:hover,
             &:focus {
                 color: rgba(#fff, 0.6);
+            }
+        }
+    }
+    .sidebar-content {
+        padding: 1.5rem 2.5rem 6.25rem 2.5rem;
+        height: 100%;
+        overflow-y: scroll;
+        .section-title {
+            color: rgba(#000, 0.25);
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 2rem;
+        }
+        .filters-list {
+            margin: 1rem 0;
+            .filter-item {
+                margin: 1rem 0;
+                &:first-child {
+                    margin-top: 0;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }
