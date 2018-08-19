@@ -14,11 +14,22 @@ import sidebar from "./Sidebar";
 // ==> Create new store
 const store = new Vuex.Store({
     state: {
+        filter: {
+            field: "types",
+            value: ""
+        },
         pokemons: []
     },
 
     getters: {
-        pokemons: state => state.pokemons,
+        pokemons(state) {
+            if (state.filter.field && state.filter.value) {
+                return state.pokemons.filter(each =>
+                    each[state.filter.field].includes(state.filter.value)
+                );
+            }
+            return state.pokemons;
+        },
         types(state) {
             if (state.pokemons.length > 0) {
                 const pokeTypes = new Set([]);
@@ -36,6 +47,9 @@ const store = new Vuex.Store({
     mutations: {
         add(state, payload) {
             state.pokemons = payload;
+        },
+        filter(state, payload) {
+            state.filter = payload;
         }
     },
 
