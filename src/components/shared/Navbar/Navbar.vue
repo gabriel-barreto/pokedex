@@ -28,6 +28,8 @@ export default {
     background-color: #e74c3c;
     box-shadow: 0 4px 6px 0 rgba(#000, 0.2);
     display: flex;
+    max-height: 5.5rem;
+    overflow: hidden;
     padding: 1rem 2.5rem;
     position: fixed;
     width: 100%;
