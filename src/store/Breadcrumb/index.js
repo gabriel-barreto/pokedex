@@ -16,7 +16,9 @@ export default {
 
     mutations: {
         add(state, payload) {
-            state.entries.push(payload);
+            if (state.entries.length < 2) {
+                state.entries.push(payload);
+            }
         },
         remove(state) {
             if (state.entries.length > 1) {
