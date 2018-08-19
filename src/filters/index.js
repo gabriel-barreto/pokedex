@@ -4,6 +4,6 @@ import stringReplace from "./stringReplace.filter";
 import colorsType from "./colorsTypes.filter";
 
 Vue.filter("replace", stringReplace);
-Vue.filter("type-color", colorsType);
+Vue.filter("typeColor", colorsType);
 
 export default Vue;
