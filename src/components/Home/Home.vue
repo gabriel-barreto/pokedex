@@ -15,22 +15,38 @@
 import Breadcrumb from '../shared/Breadcrumb/Breadcrumb.vue';
 
 export default {
-    name: 'Home',
+    name: "Home",
     components: {
-        'app-breadcrumb': Breadcrumb,
+        "app-breadcrumb": Breadcrumb,
     },
     computed: {
         pokemons () {
-            return this.$store.getters['pokemons'];
+            return this.$store.getters["pokemons"];
         },
     },
     methods: {
         go (id) {
-            this.$router.push({ name: 'pokemon', params: { id } });
+            this.$router.push({ name: "pokemon", params: { id } });
         }
     },
     mounted () {
-        this.$store.dispatch('fetchPokes');
+        if (this.$store.getters["pokemons"].length < 1) {
+            this.$store.dispatch("fetchPokes");
+        }
+        if (this.$store.getters['filter'].value) {
+            this.$store.commit("breadcrumb/add", { label: this.$store.getters['filter'].value, route: {} });
+        }
+    },
+    beforeUpdate () {
+        if (this.$store.getters['filter'].value) {
+            this.$store.commit("breadcrumb/remove");
+            this.$store.commit("breadcrumb/add", { label: this.$store.getters['filter'].value, route: {} });
+        }
+    },
+    destroyed () {
+        if (this.$store.getters['filter'].value) {
+            this.$store.commit("breadcrumb/remove");
+        }
     }
 }
 </script>
